@@ -16,4 +16,4 @@ for (int j=i+1;j<nums.size();j++){
         return ans;
     }
 };
-- 
+- 2 merge two sorted array 
