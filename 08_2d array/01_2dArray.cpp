@@ -2,7 +2,7 @@
 using namespace std;
 int main(){
     //While initializing a 2D array it is necessary to mention the second (column) dimension, whereas the first dimension (row) is optional.
-int arr[3][4]={{1,2,3},{4,5,6},{7,8,9},{10,11,12}};
+int arr[3][4]={{1,2,3,4},{5,6,7,8},{9,10,11,12}};
 //or
 int brr[4][3]={1,2,3,4,5,6,7,8,9,10,11,12};
 
@@ -61,7 +61,58 @@ for (int i =0;i<r;i++){
     }
 }
 
-    return 0;
+//rotate a matrices
+int n=3; 
+int rotate[n][n]={1,2,3,4,5,6,7,8,9};
+// transpose the matrices
+
+for (int i =0;i<n;i++){
+    for (int j =0;j<n;j++){
+        if(i==j)break;
+        int temp=rotate[j][i];
+        rotate[j][i]=rotate[i][j];
+        rotate[i][j]=temp;
+        
+    }
+}
+
+//reverse half column 
+int i =0,j=n-1;
+while (i<j){
     
+    for (int k =0;k<n;k++){
+        
+        int temp=rotate[k][i];
+        rotate[k][i]=rotate[k][j];
+        rotate[k][j]=temp;
+        
+    }
+    i++;j--;
+    
+}
+
+//print in wave form 
+
+int wave[n][n]={1,2,3,4,5,6,7,8,9};
+for (int i=0;i<n;i++){
+    if (i%2==0){
+        for (int j =0;j<n;j++){
+            cout<<wave[i][j];
+        }
+        
+        
+    }
+    else {
+        
+        for (int j =n-1;j>=0;j--){
+            cout<<wave[i][j];
+        }
+    }
+}
+
+
+
+return 0;
+
 
 }
