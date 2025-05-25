@@ -1,5 +1,6 @@
 #include<iostream>
 #include<sstream>
+#include<vector>
 #include<algorithm>
 #include<string>
 using namespace std;
@@ -45,6 +46,15 @@ arr[int(str[i])]++;
 
     return freq ;
 }
+// returen the string having max value
+void a (vector<string> s){
+int max =0,idx=0;
+    for (int i =0;i<s.size();i++){
+if(stoi(s[i])>max) {
+    max=stoi(s[i]);idx=i;
+}
+}
+}
 
 int main(){
 
@@ -72,6 +82,12 @@ sort(str.begin(),str.end());
                  stringstream ss(str)  ;
                  string temp;
                  while(ss>>temp){cout<<temp;}                                      
+
+//stoi-converts string to integer  and stoll convert string to long long
+str="123";
+int c =stoi(str);
+
+
 
     return 0;
 }
