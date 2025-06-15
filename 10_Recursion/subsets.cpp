@@ -31,8 +31,29 @@ subsetNum1(arr,n,i+1,v);
 
 }
 //having duplicate character
-void subset2(){
-    
+void subset2(string ans, string original ,vector<string > v,bool flag){
+    if(original.length()==0){
+        v.push_back(ans);
+    }
+ sort(original.begin(),original.end());
+    char s= original[0] ;
+
+if (original.length()==1){
+  if(flag==true)  subset2(ans+s,original.substr(1),v,true);
+    subset2(ans,original.substr(1),v,true);
+return ;
+}
+
+if(s==original[1]){
+  if(flag==true)       subset2(ans+s,original.substr(1),v,true);
+    subset2(ans,original.substr(1),v,false);
+}
+else{
+  if(flag==true)       subset2(ans+s,original.substr(1),v,true);
+    subset2(ans,original.substr(1),v,false);
+}
+
+
 }
 void subsetNum2(){
 
