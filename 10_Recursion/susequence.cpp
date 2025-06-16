@@ -10,8 +10,8 @@ void subset1( string ans, string original,vector<string>& v, int k  )  {  if(!or
     char s= original[0];
 
 
-    subset1(ans,  original.substr(1),v   );
-subset1(ans+s,  original.substr(1),v  );
+    subset1(ans,  original.substr(1),v,3   );
+subset1(ans+s,  original.substr(1),v ,3 );
 }
 
 
