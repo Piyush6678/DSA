@@ -6,3 +6,4 @@ Leetcode Quesation
 33 Search in rotated sorted array 
 658 K Closest Elements
 633 SUM OF SQUARES
+1011 capacity to ship within d days 
