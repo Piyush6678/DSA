@@ -5,3 +5,4 @@ Leetcode Quesation
 852 peak index in mountain array
 33 Search in rotated sorted array 
 658 K Closest Elements
+633 SUM OF SQUARES
