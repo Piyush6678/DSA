@@ -7,3 +7,5 @@ Leetcode Quesation
 658 K Closest Elements
 633 SUM OF SQUARES
 1011 capacity to ship within d days 
+875 koko eating banaa
+2187 min time to complete Trips
