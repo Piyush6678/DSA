@@ -1,9 +1,12 @@
 #include <iostream>
 using namespace std;
+
+
+
 void bubbleSort (int arr[]){
     //Stable sort 
-    // 
-
+    // time complexity  (n(n-1))/2 == o(n^2)
+// TC best Case=>O(1) avg/worstcase=O(n^@) 
 
     int n =sizeof(arr)/sizeof(arr[0]);
     bool flag=false;
