@@ -30,6 +30,8 @@ if(i==b.size())
 }
 
 void mergeSort(vector<int> & v){
+    //TC O(nlogn)   
+    //yes
     int n =v.size();
     if(n==1)return;
     vector<int> a ;
@@ -46,6 +48,7 @@ vector<int> c;
 merge(a,b,v);
 }
 
+// count inversion 
 int main(){
                                     
                               
