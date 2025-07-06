@@ -14,10 +14,24 @@ int binary_to_decimal(string &binary){
     return result;
 }
 
+string decimalToBinary(int num ){
+    string res="";
+while(num>0){
+if (num%2==0){
+    //even
+    res='0'+res;
+}else{
+    //odd
+    res='1'+res;
 
+}
+num/=2;
+}return res;
+}
 
 int main() {
     string str="100";
 cout<<    binary_to_decimal(str);
+cout<<    endl<<decimalToBinary(5);
     return 0;
 }
