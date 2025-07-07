@@ -49,14 +49,39 @@ int SetBits(int n ){
     
     return count ;
 }
-
-
-
+//maximum power of 2 
+int maxPower  (int n){
+    // int x ; 
+    // while (n>0){
+    //    x=n;
+    //   n= n & (n-1) ; 
+    // }
+    // return( x) ;
+    //method 2 
+    n=n|(n>>1);
+    n=n|(n>>2);
+    n=n|(n>>4);
+    n=n|(n>>8);
+    n=n|(n>>16);
+    return ((n+1)>>1);
+    
+}
+//flip the bits
+int flip (int a ){
+    int n =a;
+    n=n|(n>>1);
+    n=n|(n>>2);
+    n=n|(n>>4);
+    n=n|(n>>8);
+    n=n|(n>>16);
+    n=((n+1)>>1);
+return n^a;
+}
 
 int main() {
     string str="100";
 cout<<    binary_to_decimal(str);
 cout<<    endl<<decimalToBinary(5);
-cout<<    endl<<SetBits(5); 
+cout<<    endl<<maxPower(100); 
     return 0;
 }
