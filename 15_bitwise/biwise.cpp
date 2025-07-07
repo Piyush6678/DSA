@@ -99,7 +99,10 @@ num =num^arr[i];
 int k =0;
     int temp=num;
     while(true){
-        if(temp&1==1){break;}k++;
+        if(temp&1==1){break;}
+        temp>>1; 
+        k++;
+
     }
     int retval;
     for (int i =0;i<n;i++){
