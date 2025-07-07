@@ -80,9 +80,34 @@ return n^a;
 
 //Min number of bit flip to conver the number x to y 
 int flipConvert(int x ,int y){
+
    return __builtin_popcount(x^y);
 
-
+}
+// given an integer aray where every element occurs twice except only once find that unique element
+int unique1(int arr[] ,int n ){
+    int num=0 ;
+    for(int i=0;i<n;i++){
+num =num^arr[i];
+    }return num;
+}
+void unique2(int arr[] ,int n ){
+    int num=0 ;
+    for(int i=0;i<n;i++){
+num =num^arr[i];
+    }
+int k =0;
+    int temp=num;
+    while(true){
+        if(temp&1==1){break;}k++;
+    }
+    int retval;
+    for (int i =0;i<n;i++){
+        int number =arr[i];
+        
+        if ((number>>k)&1 ==1)retval^=number;
+    }cout<<retval<<endl;
+    cout<<(retval^num);
 }
 int main() {
     string str="100";
