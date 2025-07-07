@@ -32,11 +32,21 @@ num=num>>1;
 //Find the number of set bit for any integer 
 
 int SetBits(int n ){
+    // Build in function 
+    __builtin_popcount(13);
+    //our algo
     int count =0;
+    // method 1 
+    // while (n>0){
+    //     if (n%2!=0)count++;
+    //    n= n>>1;
+    // }
+    // method 2 
     while (n>0){
-        if (n%2!=0)count++;
-       n= n>>1;
+         count++;
+       n= n & (n-1) ; // brian kernighan algo 
     }
+    
     return count ;
 }
 
@@ -47,6 +57,6 @@ int main() {
     string str="100";
 cout<<    binary_to_decimal(str);
 cout<<    endl<<decimalToBinary(5);
-cout<<    endl<<SetBits(7);
+cout<<    endl<<SetBits(5); 
     return 0;
 }
