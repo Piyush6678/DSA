@@ -78,6 +78,12 @@ int flip (int a ){
 return n^a;
 }
 
+//Min number of bit flip to conver the number x to y 
+int flipConvert(int x ,int y){
+   return __builtin_popcount(x^y);
+
+
+}
 int main() {
     string str="100";
 cout<<    binary_to_decimal(str);
