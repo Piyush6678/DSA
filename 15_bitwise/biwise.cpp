@@ -25,13 +25,28 @@ if (num%2==0){
     res='1'+res;
 
 }
-num/=2;
+num=num>>1;
 }return res;
 }
+
+//Find the number of set bit for any integer 
+
+int SetBits(int n ){
+    int count =0;
+    while (n>0){
+        if (n%2!=0)count++;
+       n= n>>1;
+    }
+    return count ;
+}
+
+
+
 
 int main() {
     string str="100";
 cout<<    binary_to_decimal(str);
 cout<<    endl<<decimalToBinary(5);
+cout<<    endl<<SetBits(7);
     return 0;
 }
