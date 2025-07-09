@@ -112,6 +112,28 @@ int k =0;
     }cout<<retval<<endl;
     cout<<(retval^num);
 }
+
+ //Given an integer find the length of long3est subarray which has mazimum possible bitwise and value
+ int lenSubarray(int arr[],int n){
+    int ans=0;
+    int max_el=INT32_MIN;
+    int count =0;
+for (int i =0;i<n;i++){
+    if(arr[i]>max_el){
+        max_el=arr[i];
+        count=1;
+    }
+    else if (arr[i]==max_el){count++;
+  
+    }
+  ans =max(ans,count);
+}
+return ans;
+
+ }
+
+
+ 
 int main() {
     string str="100";
 cout<<    binary_to_decimal(str);
