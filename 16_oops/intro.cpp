@@ -37,9 +37,9 @@ void setName(string name){this->name=name;}
 void setRollno(int rollno){this->rollno=rollno;}
 void setStandard(int standard){this->standard=standard;}
 
-void gettName(){cout<<endl<<name;}
-void gettRollno(){cout<<endl<<rollno;}
-void gettStandard(){cout<<endl<<standard;}
+string gettName(){      return name;}
+int gettRollno(){    return rollno;}
+int gettStandard(){  return standard;}
 
 
 
@@ -66,9 +66,9 @@ student raj;
 raj.setName("raj");
 raj.setStandard(10);
 raj.setRollno(37);
-raj.gettName();
-raj.gettStandard();
-raj.gettRollno();
+cout<<raj.gettName();
+cout<<raj.gettStandard();
+cout<<raj.gettRollno();
 
 
     return 0;
