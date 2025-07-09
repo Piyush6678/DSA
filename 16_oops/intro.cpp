@@ -16,6 +16,13 @@ public:
     
     int health;
 
+    //members function
+    void showHealth (){
+        cout<<endl<<name<<"'s Health is "<< health;
+    }
+    void showScore (){
+        cout<<endl<<name<<"'s Score is "<< score;
+    }
 
 };
 int main() {
@@ -26,8 +33,10 @@ int main() {
     
     Player harsh;
     harsh.name="harsh";
-    amit.health=80;
-    amit.score=30;
+    harsh.health=80;
+    harsh.score=30;
 
+amit.showHealth();
+amit.showScore();
     return 0;
 }
