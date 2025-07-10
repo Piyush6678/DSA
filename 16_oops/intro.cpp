@@ -51,6 +51,9 @@ int gettStandard(){  return standard;}
 int addScore(Player a ,Player b){
 return a.score+b.score;
 }
+Player maxScore(Player a ,Player b){
+return (a.score>=b.score)?a:b;
+}
 void changeScore(Player a ){ ;
 a.score+=10;
 cout<<endl<<"changed score "<<a.score;
@@ -84,8 +87,21 @@ cout<<endl<<raj.gettRollno();
 cout<<endl<<addScore(amit,harsh);
 
 amit.showScore();
-changeScore(amit);
+changeScore(amit);//pass by value 
 amit.showScore();
+
+//max score 
+
+// cout<<endl<<maxScore(amit,harsh).name;
+//          or 
+Player winner =maxScore(amit,harsh);
+cout<<endl<<winner.name;
+
+//dynamic allocation
+Player *urvi =new Player; //memory allocation as run time 
+urvi->name="urvi";
+urvi->score=75;
+urvi->health=30;
 
     return 0;
 }
