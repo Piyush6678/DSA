@@ -3,6 +3,19 @@
 #include <algorithm>
 
 using namespace std;
+
+
+class Gun{
+public :
+int ammo ;
+int damage;
+int scope;
+};
+class helmet{
+
+};
+
+
 class Player{
     //data members
 public: 
@@ -10,6 +23,8 @@ public:
 //protected:
 
  //Data members
+    Gun gun ;
+
     string name ;
     
     int score ;
@@ -17,6 +32,15 @@ public:
     int health;
 
     //members function
+
+    Gun getgun (){
+return gun ;
+    }
+    void setGun(Gun gun ){
+this->gun=gun;
+    }
+
+
     void showHealth (){
         cout<<endl<<name<<"'s Health is "<< health;
     }
@@ -102,6 +126,20 @@ Player *urvi =new Player; //memory allocation as run time
 urvi->name="urvi";
 urvi->score=75;
 urvi->health=30;
+
+
+//
+Gun akm ;
+akm.ammo=45;
+akm.damage=79;
+akm.scope=2;
+
+
+urvi->setGun(akm);
+harsh.setGun(akm);
+amit.setGun(akm);
+
+
 
     return 0;
 }
