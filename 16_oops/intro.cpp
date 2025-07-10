@@ -46,12 +46,22 @@ int gettStandard(){  return standard;}
 
 
 };
+
+
+int addScore(Player a ,Player b){
+return a.score+b.score;
+}
+void changeScore(Player a ){ ;
+a.score+=10;
+cout<<endl<<"changed score "<<a.score;
+}
 int main() {
 //Player
+//amit is a object of class player
     Player amit ;
     amit.name="amit";
     amit.health=100;
-    amit.score=0;
+    amit.score=10;
     
     Player harsh;
     harsh.name="harsh";
@@ -62,14 +72,20 @@ amit.showHealth();
 amit.showScore();
 
 //Student
-student raj;
+student raj;//object creation , statically
+
 raj.setName("raj");
 raj.setStandard(10);
 raj.setRollno(37);
-cout<<raj.gettName();
-cout<<raj.gettStandard();
-cout<<raj.gettRollno();
+cout<<endl<<raj.gettName();
+cout<<endl<<raj.gettStandard();
+cout<<endl<<raj.gettRollno();
 
+cout<<endl<<addScore(amit,harsh);
+
+amit.showScore();
+changeScore(amit);
+amit.showScore();
 
     return 0;
 }
