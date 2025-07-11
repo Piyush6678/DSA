@@ -16,6 +16,9 @@ Bike(int tyreSize,int engineSize=150){
     this->engineSize=engineSize;
     noOfBikes++;
 }
+//constructor overloading
+ Bike(int ts):tyreSize(ts),engineSize(150){}
+ Bike():tyreSize(17),engineSize(150){}
 
 //initialisation list 
 // Bike(int ts,int es):tyreSize(ts),engineSize(es){}
