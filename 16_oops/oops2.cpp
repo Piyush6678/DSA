@@ -11,7 +11,7 @@ int engineSize;
 // Bike(){}
 
 //parameterized constructor
-Bike(int tyreSize,int engineSize=150){
+Bike(int tyreSize,int engineSize){
     this->tyreSize=tyreSize;
     this->engineSize=engineSize;
     noOfBikes++;
