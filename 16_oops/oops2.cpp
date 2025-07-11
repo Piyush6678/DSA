@@ -4,13 +4,22 @@ using namespace std;
 class Bike{
 public:
 int tyreSize;
+int engineSize;
 
 //default constructor 
 // Bike(){}
 
 //parameterized constructor
-Bike(int tyreSize){
+Bike(int tyreSize,int engineSize=150){
     this->tyreSize=tyreSize;
+    this->engineSize=engineSize;
+}
+
+
+//Destructor //calls when object goes out of scope
+  
+~Bike (){
+    cout<<"destructor call hua";
 }
 };
 int main() {
