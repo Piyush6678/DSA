@@ -16,7 +16,16 @@ void show (){ //  overriudes the function  of A
 }
 };
 int main() {
-    B b ;
-    b.show(); // "b ka show" 
+   // B b ;
+    //b.show(); // "B ka show" 
+    //b.A::show(); // "A ka show"
+
+    //
+     B b ;
+     A *a;
+     a=&b;
+     a->a=1;
+     a->show();// a ka show 
+
     return 0;
 }
