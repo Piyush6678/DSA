@@ -12,6 +12,15 @@ Node (int val){
 }
 
 };
+void display(Node* a){
+//printing linked list 
+Node* temp =a;
+while(temp!=NULL){
+    cout<<temp->val<<"  ";
+    temp=temp->next;
+
+}
+}
 int main() {
 Node* a=new Node(10);
 Node* b=new Node(20);
@@ -21,13 +30,7 @@ Node* d=new Node(40);
 a->next=b;
 b->next=c;
 c->next=d;
+display(a);
 
-//printing linked list 
-Node* temp =a;
-while(temp!=NULL){
-    cout<<temp->val<<"  ";
-    temp=temp->next;
-
-}
     return 0;
 }
