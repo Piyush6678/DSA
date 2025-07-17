@@ -13,13 +13,22 @@ class LinkedList{  //User defined Data Structure
     protected:
 Node* head;
 Node* tail;
-int size;
+
 public:
+int size;
 LinkedList(){
     head=tail=NULL;
     size=0;
 }
 
+void display(){
+    Node* temp =head;
+    while(temp!=NULL){
+        cout<<temp->val<<" ";
+        temp=temp->next;
+    }
+}
+    // insert at the end 
 void insertAtEnd(int val ){
     Node *temp =new Node(val);
     if(size==0){
@@ -34,20 +43,35 @@ void insertAtEnd(int val ){
     size++;
 }
 
-void display(){
-    Node* temp =head;
-    while(temp!=NULL){
-        cout<<temp->val<<" ";
-        temp=temp->next;
+void deleteAtENd(){
+Node* temp =head;
+while(temp!=NULL){
+    if(temp->next==tail){
+        temp->next=NULL;
+        tail=temp;
+        break;
     }
-    
+    temp=temp->next;
+}    
 }
+
+    
+
+
+
+
+
+
 
 };
 int main() {
     LinkedList ll;
     ll.insertAtEnd(10);
-    ll.insertAtEnd(20);
-    ll.display();
+    ll.insertAtEnd(20); 
+    ll.insertAtEnd(30); 
+    ll.insertAtEnd(40); 
+    ll.display(); //10 20 30 40 
+    ll.deleteAtENd();
+    ll.display(); //10 20 30  
     return 0;
 }
