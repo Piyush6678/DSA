@@ -42,6 +42,20 @@ void insertAtEnd(int val ){
     }
     size++;
 }
+//Insert at head 
+void insertAtHead(int val ){
+    Node *temp =new Node(val);
+    if(size==0){
+        head=tail=temp;
+        
+    }
+    else{
+        temp->next=head;
+        head=temp;
+        
+    }
+    size++;
+}
 
 void deleteAtENd(){
     if(size==0)return ;
@@ -75,5 +89,7 @@ int main() {
     ll.display(); //10 20 30 40 
     ll.deleteAtENd();
     ll.display(); //10 20 30  
+    ll.insertAtHead(5); 
+    ll.display(); //5 10 20 30  
     return 0;
 }
