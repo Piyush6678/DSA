@@ -21,8 +21,15 @@ while(temp!=NULL){
 
 }
 }
+void recDisplay(Node* head){
+//printing linked list recursively 
+if (head==NULL)return ;
+cout<<head->val<<" ";
+recDisplay(head->next);
+}
 
 int size(Node* head){
+    //size of a linked list
     Node* temp =head;
     
     int count=0;
@@ -44,5 +51,6 @@ b->next=c;
 c->next=d;
 display(a);
 cout<<size(a);
+recDisplay(a);
     return 0;
 }
