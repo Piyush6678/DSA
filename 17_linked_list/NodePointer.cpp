@@ -27,6 +27,12 @@ if (head==NULL)return ;
 cout<<head->val<<" ";
 recDisplay(head->next);
 }
+void revDisplay(Node* head){
+//printing linked list reverse 
+if (head==NULL)return ;
+recDisplay(head->next);
+cout<<head->val<<" ";
+}
 
 int size(Node* head){
     //size of a linked list
@@ -49,7 +55,7 @@ Node* d=new Node(40);
 a->next=b;
 b->next=c;
 c->next=d;
-display(a);
+display(a); 
 cout<<size(a);
 recDisplay(a);
     return 0;
