@@ -26,7 +26,7 @@ void display(){
     while(temp!=NULL){
         cout<<temp->val<<" ";
         temp=temp->next;
-    }
+    }cout<<endl; 
 }
     // insert at the end 
 void insertAtEnd(int val ){
@@ -57,6 +57,25 @@ void insertAtHead(int val ){
     size++;
 }
 
+void insertAtIdx(int idx,int val ){
+if(idx==0)   insertAtHead(val);
+
+else if(idx==size)insertAtEnd(val);
+else if(idx<0 or idx>size)    cout<<"invalid Idx";
+else{   
+     int i =1;
+    Node *temp =new Node(val);
+Node* h=head;
+while(i<idx){
+    h=h->next;
+    i++;
+}
+temp->next=h->next;
+h->next=temp;
+size++;
+}
+}
+
 void deleteAtENd(){
     if(size==0)return ;
 Node* temp =head;
@@ -71,6 +90,21 @@ while(temp!=NULL){
 }    
 }
 
+int getElementIdx(int idx){
+    Node* temp =head;
+if(idx==0)return temp->val;
+if(idx==size-1)return tail->val;
+if(idx<0 || idx>=size){
+    cout<<"invalid IDX";
+    return -1;
+}
+    for (int i=0;i<idx;i++){
+        temp=temp->next;
+
+    }return temp->val;
+
+}
+
     
 
 
@@ -82,6 +116,8 @@ while(temp!=NULL){
 };
 int main() {
     LinkedList ll;
+    int i =0;
+  
     ll.insertAtEnd(10);
     ll.insertAtEnd(20); 
     ll.insertAtEnd(30); 
@@ -91,5 +127,9 @@ int main() {
     ll.display(); //10 20 30  
     ll.insertAtHead(5); 
     ll.display(); //5 10 20 30  
+    ll.insertAtIdx(2,15); 
+    ll.display(); //5 10 15 20 30  
+
+    cout<<ll.getElementIdx(2);
     return 0;
 }
