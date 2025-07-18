@@ -76,19 +76,7 @@ size++;
 }
 }
 
-void deleteAtENd(){
-    if(size==0)return ;
-Node* temp =head;
-while(temp!=NULL){
-    if(temp->next==tail){
-        temp->next=NULL;
-        tail=temp;
-        size--;
-        break;
-    }
-    temp=temp->next;
-}    
-}
+
 
 int getElementIdx(int idx){
     Node* temp =head;
@@ -104,8 +92,24 @@ if(idx<0 || idx>=size){
     }return temp->val;
 
 }
+//Delete At head
+void deleteAtHead(){
+    head=head->next;
+}
 
-    
+    void deleteAtENd(){
+    if(size==0)return ;
+Node* temp =head;
+while(temp!=NULL){
+    if(temp->next==tail){
+        temp->next=NULL;
+        tail=temp;
+        size--;
+        break;
+    }
+    temp=temp->next;
+}    
+}
 
 
 
