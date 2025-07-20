@@ -94,21 +94,34 @@ if(idx<0 || idx>=size){
 }
 //Delete At head
 void deleteAtHead(){
-    head=head->next;
-}
-
-    void deleteAtENd(){
-    if(size==0)return ;
-Node* temp =head;
-while(temp!=NULL){
-    if(temp->next==tail){
-        temp->next=NULL;
-        tail=temp;
-        size--;
-        break;
+    if(size==0){
+        cout <<"You'r list is empty";
     }
+    head=head->next;
+    size--;
+}
+//delete at tail 
+ void deleteAtENd(){
+    if(size==0){ cout <<"You'r list is empty";return ;}
+Node* temp =head;
+while(temp->next!=tail){
+    
     temp=temp->next;
-}    
+}   
+temp->next=NULL;
+tail=temp; 
+}
+void deleteAtIdx(int idx){
+   if(idx==0)deleteAtHead();
+   else if(idx==size-1)deleteAtENd();
+   else{
+    Node* temp=head;
+
+    for (int i =1;i<idx;i++){
+        temp=temp->next;
+    }
+    temp->next=temp->next->next;
+    size--;}
 }
 
 
@@ -133,7 +146,9 @@ int main() {
     ll.display(); //5 10 20 30  
     ll.insertAtIdx(2,15); 
     ll.display(); //5 10 15 20 30  
-
-    cout<<ll.getElementIdx(2);
+    
+    cout<<ll.getElementIdx(2)<<endl;  //15
+    ll.deleteAtIdx(2);
+    ll.display(); //5 10  20 30  
     return 0;
 }
