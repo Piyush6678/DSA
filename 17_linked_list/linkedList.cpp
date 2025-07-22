@@ -102,7 +102,7 @@ void deleteAtHead(){
 }
 //delete at tail 
  void deleteAtENd(){
-    if(size==0){ cout <<"You'r list is empty";return ;}
+    if(size==0){ cout <<"Your list is empty";return ;}
 Node* temp =head;
 while(temp->next!=tail){
     
