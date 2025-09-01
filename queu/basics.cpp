@@ -28,6 +28,16 @@ void display_rev(queue<int>& q){
        
     }cout<<endl;
 } 
+//remove ele  at even index consider 0 based idexing
+void removeEven(queue<int>& q){
+    int n=q.size();
+    for(int i =0;i<n;i++){
+        int x= q.front();
+            q.pop();
+            if(i%2!=0)q.push(x);
+    }
+
+}
 int main() {
     queue<int> q;
     //push pop front size
