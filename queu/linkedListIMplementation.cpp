@@ -22,15 +22,19 @@ class Queue{
         node* temp=new node(val);
         if(size==0) front=back=temp;
         else{
-            temp->next=front;
-            front=temp;
+
+            back->next=temp;
+            back=temp;
 
         }size++;
     }
     void pop(){
         if(size==0){cout<<"Queue is empty";return;}
         else{
+            node*temp=front;
+
             front=front->next;
+            delete(temp);
             size--;
         }
     }
