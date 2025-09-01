@@ -22,6 +22,10 @@ arr[size]=val;
 back=size;
 }
 void pop(){
+        if(size<0){cout<<"stack is empty";return ;}
+    for (int i =0;i<size-1;i++){
+        arr[i]=arr[i+1];
+    }
     back--;size--;
 }
 int front(){
@@ -37,6 +41,11 @@ int size(){
     if(size<0){cout<<"stack is empty";return ;}
     return size;
 
+}
+void display(){
+    for (int i =0;i<size;i++){
+        cout<<arr[i]<<" ";
+    }cout<<"\n";
 }
 
 
