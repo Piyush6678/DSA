@@ -13,24 +13,7 @@ right=NULL;
 }
 };
 
-void displayTree_Pre(Node *root){
-  if(root==NULL)return ;
-cout<<root->val<<"->";
-displayTree_Pre(root->left);
-displayTree_Pre(root->right);  
-}
-void displayTree_In(Node *root){
-  if(root==NULL)return ;
-  displayTree_In(root->left);
-  cout<<root->val<<"->";
-displayTree_In(root->right);  
-}
-void displayTree_Post(Node *root){
-  if(root==NULL)return ;
-  displayTree_Post(root->left);
-  displayTree_Post(root->right);  
-  cout<<root->val<<"->";
-}
+
 int sumOfTree(Node *root ){
   if(root==NULL)return 0 ;
   int sum=root->val ;
@@ -85,12 +68,7 @@ B->right=E;
 C->left=F;
 C->right=G;
 //pre order
-cout<<"PRE ORDER"<<endl;
-displayTree_Pre(A);
-cout<<endl<<"IN ORDER"<<endl;
-displayTree_In(A);
-cout<<endl<<"POST ORDER"<<endl;
-displayTree_Post(A);
+
 cout<<endl<<"sum of tree"<<endl;
 cout<<sumOfTree(A);
 cout<<endl<<"size of tree"<<endl;
