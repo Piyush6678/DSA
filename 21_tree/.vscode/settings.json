@@ -3,6 +3,8 @@
         "*.ejs": "html",
         "array": "cpp",
         "initializer_list": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "iostream": "cpp",
+        "memory_resource": "cpp"
     }
 }

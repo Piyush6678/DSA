@@ -6,3 +6,7 @@ lc
 236 lowest common ancestor #imp
 144 preorder 94 in order  145 post order  
 102 level order traversal
+199 right side view
+113 path sum 2 
+437 path sum 3 
+105 cionsutruct a tree 

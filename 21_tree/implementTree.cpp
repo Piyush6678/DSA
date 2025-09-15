@@ -1,4 +1,5 @@
-#include<iostream>
+#include<iostream> 
+#include<queue>
 using namespace std;
 class Node{
 public:
@@ -66,8 +67,36 @@ void bfs(Node* root){
 }
 
 void bfsR2L(Node* root){
+ for(int i =1;i<=levelTree(root);i++){
+          display_level_R2L(root->left,1,i);
+          cout<<endl;
+    }
+}
+
+
+// bfs using queue
+
+void bfslOrderQueue(Node* root){
+    queue<Node*>q;
+    q.push(root);
+    while(q.size()>0){
+        Node* temp= q.front();
+        cout<<temp->val<<"->";
+        q.pop();
+        if(temp->left)q.push(temp->left);
+        if(temp->right)q.push(temp->right);
+    }
+    cout<<endl; 
+}
+
+
+//construct a tree from level order traversal from bfs
+
+void constructATree (int arr[],int n ){
+queue<Node*>tree;
 
 }
+
 
 int main(){
 
