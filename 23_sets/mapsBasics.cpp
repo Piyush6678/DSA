@@ -11,11 +11,24 @@ int main() {
     pair<string,int> p1;
     p1.first="Piyush";
     p1.second=23;
-    student.insert(p1);
+    student.insert(p1); 
+    student["Raghav"]=56;
+    student["Mridul"]=6;
 
+// for(pair<string, int> p : student)
+// {
+//     cout<<"roll no. of "<<p.first<<" is " << p.second;
 
+// }
 
+for(auto p : student)
+{
+    cout<<"roll no. of "<<p.first<<" is " << p.second;
 
+}
+
+student.erase("Raghav"); // take keys
+if(student.find("Piyush")!=student.end()){//code}
 
     return 0;
 }
