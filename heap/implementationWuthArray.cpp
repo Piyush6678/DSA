@@ -42,7 +42,8 @@ while(1){
 int r=2*i +1;
 if( l>top-1  )break; 
 if(r>top-1){
-
+if(arr[i]>arr[l]){swap(arr[i],arr[l]);
+i=l;} break;
 }
 if(arr[l]<arr[r] ){
 if(arr[i]>arr[l]){swap(arr[i],arr[l]);
