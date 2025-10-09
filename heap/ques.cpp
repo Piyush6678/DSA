@@ -43,6 +43,11 @@ int  MinimumcostToconnectAllRopes(vector<int> & nums){
     return pq.top();
 
 } 
+
+void bstToMaxHeap(){
+    
+}
+
 int main() {
    vector <int>v={10,20,-4,6,18,24,105,118};
     // heap method t.c. (n logk)
