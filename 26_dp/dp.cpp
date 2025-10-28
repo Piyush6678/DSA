@@ -19,12 +19,20 @@ for(int i =2;i<=n;i++){
     arr[i]=arr[i-1]+arr[i+2];
 }
 }
-int minCostClimbingStairshelper(vector<int> & cost,int i ,int sum){
-if(i>=cost.size()) return sum;
-return min(minCostClimbingStairshelper(cost,i+1,sum+cost[i]),minCostClimbingStairshelper(cost,i+2,sum+cost[i]));
+
+
+
+int minCostClimbingStairshelper(vector<int> & cost,int i ,vector<int>&dp){
+if(i==0 || i==1) return cost[i];
+
+
+if(dp[i]!=-1)return dp[i];
+
+return dp[i]= cost[i]+min(minCostClimbingStairshelper(cost,i-1,dp),minCostClimbingStairshelper(cost,i-2,dp));
 }
-int minCostClimbingStairs(vector<int> & cost,vector<int>?&dp){
-return min(minCostClimbingStairshelper(cost,0,0),minCostClimbingStairshelper(cost,1,0));
+int minCostClimbingStairs(vector<int> & cost,vector<int>&dp){
+    int n =cost.size();
+    return min(minCostClimbingStairshelper(cost,n-1,dp),minCostClimbingStairshelper(cost,n-2,dp));
 }
 
 
