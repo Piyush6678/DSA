@@ -23,6 +23,7 @@ for(int i =2;i<=n;i++){
 
 
 int minCostClimbingStairshelper(vector<int> & cost,int i ,vector<int>&dp){
+    //memorization
 if(i==0 || i==1) return cost[i];
 
 
@@ -32,7 +33,13 @@ return dp[i]= cost[i]+min(minCostClimbingStairshelper(cost,i-1,dp),minCostClimbi
 }
 int minCostClimbingStairs(vector<int> & cost,vector<int>&dp){
     int n =cost.size();
-    return min(minCostClimbingStairshelper(cost,n-1,dp),minCostClimbingStairshelper(cost,n-2,dp));
+    // return min(minCostClimbingStairshelper(cost,n-1,dp),minCostClimbingStairshelper(cost,n-2,dp));
+    //tabulation
+
+for(int i=2;i<n;i++){
+    cost[i]+=min(cost[i-1],cost[i-2]))
+}
+return min(cost[n-1],cost[n-2]);
 }
 
 
