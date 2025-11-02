@@ -42,6 +42,35 @@ for(int i=2;i<n;i++){
 return min(cost[n-1],cost[n-2]);
 }
 
+int uniquePathHelper(int sr,int sc, int er, int ec){
+if(sr==er && sc==ec)return 1;
+if(sr>er || sc>ec)return 0;
+int rw= uniquePathHelper(sr,sc+1,er,ec);
+int dw= uniquePathHelper(sr+1,sc,er,ec);
+return dw+rw;
+}
+int uniquePath(int m ,int n ){
+// if(m==1&& n==1) return 1;
+// if(m==0 || n==01) return 0;
+
+// return uniquePath(m-1,n)+ uniquePath(m,n-1);
+
+return uniquePathHelper(0,0,m-1,n-1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 int main() {
     vector<int>dp(100,-1); // array should be greater the n+1 size
