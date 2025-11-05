@@ -7,6 +7,7 @@ using namespace std;
 vector <  list<int>>graph;
 int v;
 unordered_set<int> visited;
+vector<vector<int>> allPathResult;
 void add_edge(int src,int dest , bool bi_dir=true)
 {
     graph[src].push_back(dest);
@@ -17,17 +18,35 @@ void add_edge(int src,int dest , bool bi_dir=true)
 
 }
 
-bool dfs(int curr,int end){
+void allPath(int src,int end ,vector<int>&path){
+    path.push_back(src);
+   if(src==end){
+    
+    allPathResult.push_back(path);
 
- 
+    path.pop_back();
+    return ;
 }
+   
+       visited.insert(src);
+    for (auto nei : graph[src] ){
+        if(not visited.count(src)){
+           allPath(nei,end,path);
+          
+        }
 
+    }
+    path.pop_back();
+    visited.erase(src);
+    return ;
+
+}
 bool anyPath(int src, int dest){
     if(src==dest)return true;
        visited.insert(src);
     for (auto nei : graph[src] ){
         if(not visited.count(src)){
-            bool result=dfs(nei,dest);
+            bool result=anyPath(nei,dest);
             if(result )return true;
 
         }
