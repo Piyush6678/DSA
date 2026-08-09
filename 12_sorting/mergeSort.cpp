@@ -44,7 +44,7 @@ for (int i =n/2;i<n-(n/2);i++){
 }
 mergeSort(a);
 mergeSort(b);
-vector<int> c;
+;
 merge(a,b,v);
 }
 

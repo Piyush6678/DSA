@@ -9,7 +9,7 @@ void insertionSort(int arr[],int n ){
         int j = i;
 
         
-        while (j >= 1 && arr[j] > arr[j-1]) {
+        while (j >= 1 && arr[j] < arr[j-1]) {
 swap(arr[j],arr[j-1]);  // shift to right
             j--;
         }

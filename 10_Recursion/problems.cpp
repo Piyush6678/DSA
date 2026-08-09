@@ -50,8 +50,23 @@ void toh(char s,char h ,char d, int n ){
 
 
 }
+//Generate all the strings of length n drawn from 0... k – 1.
+void kstrings(int n ,int k,int arr[] ,int s){
+    if(n<1){
+    
+        for (int i =0;i<s;i++){
+            cout<<arr[i];
+        }cout<<endl;
+    }else{
+        for (int i=0;i<k;i++){
+            arr[n-1]=i;
+            kstrings(n-1,k,arr,s);
+        }
+    }
+}
 
-
-int main(){
+int main(){ 
+    int arr[3];
+    kstrings(3,3,arr,3);
 return 0;
 }

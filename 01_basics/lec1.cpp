@@ -40,15 +40,15 @@ cout<<x ;// 6 6 6 7
 a=7;b=6;
 cout<<a%b; // 1
 a=3;
-cout<<a%b; // if a<b return a means 3
-b=-6; a=7; 
-cout<<a%b; //  1 (a%b)
+cout<<a%b; // if a<b return 'a' means 3
+ a=7;b=-6;  
+cout<<a%b; //  1 (a%b)==(a%-b)
 a=-a;b=-b; //a=-7 b=6
-cout<<a%b; // -(a%b) -1
+cout<<a%b; //  -1 (-a%b)== -(a%b) 
 b=-b;
 cout<<a%b; // -(a%b) -1
 a=6;b=0;
-cout<<endl<<a%b;
+cout<<endl<<a%b;  // error or garbage value 
 
 
 
