@@ -658,6 +658,282 @@ same result.
 
 ---
 
+# Section 5 — Advanced / multi-concept
+
+**No solutions here, on purpose.** Each entry says what the problem is really asking, which
+techniques it combines, and what the trap is. Everything else is yours to work out — these are the
+problems where being handed the answer costs you the whole benefit.
+
+Read an entry, note the prerequisite folder, and come back when you have it.
+
+---
+
+## 5a — DP on trees
+
+The move that turns a tree traversal into tree DP: **a node stops returning one number and starts
+returning a small tuple of "best under each possible decision at this node".** The parent then
+combines children's tuples. Once you see that, this whole subsection is one idea.
+
+### 35. House Robber III — LC 337 — needs `../26_dp`
+
+*Same rule as House Robber on an array, but the houses form a tree: you cannot rob a node and its
+child.*
+
+**Combines:** `../21_tree` §5(a) bottom-up recursion + the take/skip decision from 1-D DP.
+
+**What to work out.** A single return value cannot express the answer, because whether a child's
+best plan is usable depends on whether *you* took the parent. Decide what pair of numbers each node
+must report so the parent can combine them without re-descending. If your solution calls a helper
+on grandchildren, it is exponential — that is the trap, and it is the same trap memoisation fixes
+on arrays.
+
+**Then ask yourself:** what is the array version of this problem, and what exactly changed?
+
+---
+
+### 36. Binary Tree Cameras — LC 968 — needs `../26_dp`
+
+*Place the fewest cameras on tree nodes so every node is covered; a camera covers itself, its
+parent and its children.*
+
+**Combines:** post-order tree DP + a greedy argument about leaves.
+
+**What to work out.** Each node is in one of three conditions after processing its subtree, not
+two. Naming those three states correctly is 80% of the problem; the transitions are short once the
+states are right. Separately, there is a greedy observation about where a camera is *never* worth
+placing — find it, and the state machine gets much easier to justify.
+
+**Trap:** the root needs a final check that the internal states do not cover. Widely considered one
+of the hardest binary-tree problems on the site; do #35 first.
+
+---
+
+### 37. Longest Path With Different Adjacent Characters — LC 2246 — needs `../26_dp`, `../09_Strings`
+
+*A tree where each node carries a letter; find the longest path on which no two adjacent nodes
+share a letter.*
+
+**Combines:** the one-pass diameter shape (§1 #10) + a per-child filter + n-ary children.
+
+**What to work out.** This *is* diameter — but a child only contributes if its letter differs from
+yours, and a node can have many children rather than two, so "the two best children" needs an
+explicit selection rather than `L + R`. Get the n-ary version of the diameter combine right and the
+letter condition is one `if`.
+
+**Trap:** the input is a parent array, not node pointers. Building the child lists is step zero.
+
+---
+
+### 38. Sum of Distances in Tree — LC 834 — needs `../26_dp`, `../27_graphs`
+
+*For every node, the sum of distances to all other nodes.*
+
+**Combines:** subtree-size DP + **rerooting** — the technique this problem exists to teach.
+
+**What to work out.** Computing the answer for one fixed root is a normal post-order. Doing it n
+times is O(n²) and too slow. The insight is that moving the root from a node to its neighbour
+changes the answer by a fixed amount expressible in subtree sizes — derive that delta on paper
+before writing code.
+
+Rerooting is one of the highest-leverage tree techniques there is, and this is the canonical
+problem for it.
+
+---
+
+### 39. Kth Ancestor of a Tree Node — LC 1483 — needs `../26_dp`, `../15_bitwise`
+
+*Answer many "what is the kth ancestor of node v" queries.*
+
+**Combines:** **binary lifting** — a DP table over powers of two + bit decomposition of `k`.
+
+**What to work out.** Walking up k steps per query is O(n) each and too slow. Precompute a table
+whose `[v][j]` entry answers one specific question about `v`; the recurrence that fills it is one
+line and is the whole trick. Then a query decomposes `k` in binary and takes one jump per set bit —
+which is `../15_bitwise` doing real work.
+
+See `../22_bst/advanced_tree_readme.md` §9 for where this same table also solves LCA.
+
+---
+
+## 5b — the tree is a BST, or contains one
+
+### 40. Maximum Sum BST in Binary Tree — LC 1373 — needs `../22_bst`
+
+*In an arbitrary binary tree, find the maximum sum over all subtrees that happen to be valid BSTs.*
+
+**Combines:** `../22_bst` §3 #22 (largest BST subtree) + a running maximum.
+
+**What to work out.** Nothing new if you have done #22 — the same `{isBST, min, max, ...}` struct
+returned upward, with one more field. The reason it is here is that it is the cleanest illustration
+of *why* the struct exists: you cannot answer "is this a BST" by looking downward from the node.
+
+**Trap:** sums can be negative, so "the biggest valid BST" and "the best answer" are different
+things, and the empty subtree is a legal answer of 0.
+
+---
+
+### 41. K Closest Values in a BST — LC 272 `[prem]` — needs `../22_bst`, `../25_heap`
+
+*Return the k values closest to a target.*
+
+**Combines:** in-order traversal + either a bounded heap or two-pointer.
+
+**What to work out.** There are two good solutions and comparing them is the exercise: a max-heap
+of size k keyed on distance gives **O(n log k)**; using the fact that in-order is sorted, a
+predecessor iterator and a successor iterator walking outward from the target give **O(k + h)**.
+Work out why the second is possible at all — it depends on a property a general binary tree does
+not have.
+
+---
+
+### 42. Merge BSTs to Create Single BST — LC 1932 — needs `../22_bst`, `../24_maps`
+
+*Given several small BSTs, repeatedly splice one into a matching leaf of another until a single
+valid BST remains — or report that it is impossible.*
+
+**Combines:** BST validation + hash maps for root/leaf lookup + a degree/counting argument.
+
+**What to work out.** This is a graph-assembly problem in tree clothing. Three separate things must
+hold: exactly one root can survive; every splice must match a leaf value; and the final structure
+must validate as a BST. Decide *which map you need* before writing anything — the wrong indexing
+choice makes this problem miserable.
+
+**Trap:** cycles. Two trees can splice into each other and leave nothing connected to the survivor.
+Counting nodes at the end is how you catch it.
+
+---
+
+### 43. Unique Binary Search Trees II — LC 95 — needs `../22_bst`, `../26_dp`
+
+*Generate every structurally distinct BST holding `1..n`.*
+
+**Combines:** the BST invariant + divide and conquer + memoisation.
+
+**What to work out.** Do **LC 96** first — it asks only for the *count*, and the recurrence you find
+there (a sum over which value is the root) is the same recurrence that generates the trees. The
+count is the Catalan numbers; noticing that is a nice bonus, not the point.
+
+**Trap:** the sub-results are *lists of trees*, so combining left and right options is a double
+loop, and every combination needs a fresh root node.
+
+---
+
+## 5c — maps, sets and hashing on trees
+
+### 44. Find Duplicate Subtrees — LC 652 — needs `../24_maps`
+
+*Return one root per distinct subtree shape-and-value that appears more than once.*
+
+**Combines:** serialisation (§3 #26) + a hash map used as a counter.
+
+**What to work out.** "Are these two subtrees identical" is expensive to ask pairwise and cheap to
+ask if each subtree can be reduced to a **key**. Design that key: it must include nulls, or two
+different trees collide — which is exactly Q7's point about pre-order alone being ambiguous.
+
+**Trap:** naive string concatenation makes this O(n²) in total string length. The fix is to map each
+distinct subtree to an integer id and key on `(leftId, val, rightId)` instead.
+
+---
+
+### 45. Most Frequent Subtree Sum — LC 508 — needs `../24_maps`, `../25_heap`
+
+*The subtree sum that occurs most often; return all values tied for the maximum.*
+
+**Combines:** post-order sums + frequency map + a top-k selection.
+
+**What to work out.** Straightforward once you see that every node's subtree sum comes for free
+from a post-order. The interesting half is the second step — with only *one* answer wanted, a heap
+of size 1 or a single pass both work; with **all ties** wanted, the pass and the heap behave
+differently. Decide which you actually need.
+
+---
+
+### 46. Create Binary Tree From Descriptions — LC 2196 — needs `../23_sets`, `../24_maps`
+
+*Given a list of `[parent, child, isLeft]` triples, build the tree and return its root.*
+
+**Combines:** a value→node map + a set difference to find the root.
+
+**What to work out.** Every problem so far handed you a root. Here you have to *find* it, and the
+characterisation is a one-liner about which values appear in which position across the triples.
+Write that characterisation down before coding.
+
+**Trap:** the same node value appears in many triples, so nodes must be created once and reused —
+this is the map's real job, not the lookup.
+
+---
+
+### 47. Smallest Missing Genetic Value in Each Subtree — LC 2003 — needs `../23_sets`
+
+*For every node, the smallest positive integer not present in its subtree.*
+
+**Combines:** DFS + sets + **small-to-large merging**.
+
+**What to work out.** The direct solution collects a set per subtree and is O(n²) when the tree is a
+chain. The fix is a general and very reusable rule about *which* set to merge into which; find it,
+and prove the total work is O(n log n). There is also a slicker path that starts from the single
+node holding value 1 — most nodes' answers are trivially 1, and only one root-ward chain is
+interesting.
+
+**This is the most valuable problem in Section 5.** The merging rule is the same amortised argument
+as union-by-size in `../28_DSU`, and it reappears constantly in tree problems.
+
+---
+
+### 48. Throne Inheritance — LC 1600 — needs `../24_maps`
+
+*Maintain a royal succession order under births and deaths.*
+
+**Combines:** an n-ary tree stored as a map + pre-order + design/API thinking.
+
+**What to work out.** The succession order is a pre-order traversal — recognising that is the whole
+insight, and it takes about a minute. The rest is design: what do you store so that `birth` is
+O(1), and do you recompute the order per query or maintain it? State the trade-off out loud; it is
+a design question and that is what is being marked.
+
+---
+
+## 5d — the tree is really a graph
+
+### 49. Minimum Height Trees — LC 310 — needs `../27_graphs`
+
+*Given a tree as an edge list, find every node that would give the minimum height if used as root.*
+
+**Combines:** adjacency lists + a BFS-flavoured peeling process + a proof about how many answers
+there can be.
+
+**What to work out.** There is no root pointer, no `left`/`right` — just n nodes and n−1 edges. Two
+things to establish before coding: **how many nodes can be valid answers** (the number is small and
+fixed, and knowing it tells you when to stop), and what repeatedly removing all current leaves
+converges to.
+
+Running BFS from every node is O(n²) and is the solution to beat.
+
+---
+
+### 50. Linked List in Binary Tree — LC 1367 — needs `../17_linked_list`
+
+*Does some downward path in the tree spell out the given linked list?*
+
+**Combines:** two pointer structures at once — `../17_linked_list` traversal inside a tree DFS.
+
+**What to work out.** Two nested recursions with different jobs: one chooses where a match may
+*start*, the other checks whether a match *continues*. Keeping those separate is the entire
+problem.
+
+**Trap:** on a mismatch partway down, the match must restart from the list head — but **not** from
+the tree root. Getting that wrong passes the samples and fails on repeated values.
+
+---
+
+**A note on why these are worth doing at all.** Sections 1–3 teach you the tree techniques.
+Section 5 teaches you the thing interviews actually test: recognising, mid-problem, that the tree
+part is finished and something else has started. Each entry above is one instance of that
+recognition, which is why the answers are withheld — a solution you read teaches you the algorithm
+and skips the recognition.
+
+---
+
 # Bugs in your existing code
 
 **Everything below was compiled and run. Nothing in `21_tree/` was edited.**

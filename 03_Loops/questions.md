@@ -86,8 +86,8 @@ constantly in `../15_bitwise`. #15 has a neat O(1)-ish reformulation in terms of
 ## Progress tracker
 
 ```
-Section 1   [ ] 1   [ ] 2   [ ] 3   [ ] 4   [ ] 5
-Section 2   [ ] 6   [ ] 7   [ ] 8   [ ] 9   [ ] 10
+Section 1   [done  ] 1   [done  ] 2   [done  ] 3   [done ] 4   [done] 5
+Section 2   [ done ] 6   [done  ] 7   [done  ] 8   [done] 9   [done] 10
 Section 3   [ ] 11  [ ] 12  [ ] 13  [ ] 14  [ ] 15
 Section 4   [ ] ______ / 9
 ```

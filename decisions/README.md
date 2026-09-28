@@ -20,8 +20,11 @@ re-derive them by reading 108 files.
 | [09](09_folder-renames-not-deletions.md) | Mass working-tree deletes are folder renames, not accidents | accepted |
 | [10](10_vscode-settings-not-propagated.md) | `.vscode/settings.json` contents were not carried into `CLAUDE.md` | accepted |
 | [11](11_decision-record-format.md) | This folder's own format | accepted |
-| [12](12_folder-docs-scope-and-sourcing.md) | Scope and sourcing for the per-folder doc sets in 01–13 | accepted |
+| [12](12_folder-docs-scope-and-sourcing.md) | Scope and sourcing for the per-folder doc sets in 01–26 | accepted |
 | [13](13_pseudocode-first-solution-format.md) | From folder 14 on, solutions are pseudocode-first; code only for fundamentals, implementations, hard and trick problems | accepted |
+| [14](14_out-of-scope-advanced-sections.md) | A `questions.md` may carry a Section 5 that breaks the scope rule on purpose — and withholds its answers | accepted |
+| [15](15_advanced-tree-readme-as-a-fourth-file.md) | `advanced_tree_readme.md` is a fourth file in `22_bst`, a reference rather than a curriculum | accepted |
+| [16](16_revision-folder-has-no-per-problem-solutions.md) | `29_Practice Problems` is a revision set: 150 problems with no solutions, plus 30 answered theory questions | accepted |
 
 ## Format
 

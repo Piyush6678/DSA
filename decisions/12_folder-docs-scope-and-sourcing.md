@@ -1,4 +1,4 @@
-# 12 — Scope and sourcing for the per-folder doc sets (01–13)
+# 12 — Scope and sourcing for the per-folder doc sets (01–29)
 
 ## Context
 
@@ -125,6 +125,68 @@ For 11–13, another 199 assertions, and two more notes:
    in these files run the author's version *and* the corrected version on the same input —
    `subarraysDivByK` giving 4 instead of 7, `bubbleSort` returning its input untouched,
    `mergeSort({3,1,2})` producing `{1,1,2}`. A diagnosis without a counterexample is an opinion.
+
+### Amendment — 22–26
+
+Counts continue to track how many *independent* skills a folder contains, not folder importance:
+`22_bst` 26, `23_sets` **14**, `24_maps` 24, `25_heap` 22, `26_dp` **52**. The two extremes are the
+informative ones.
+
+`23_sets` is the smallest set in the repo and is deliberately so — a set answers one question,
+*"have I seen this?"*, and padding it would have meant importing map, window and sorting problems.
+The file says this in its first paragraph rather than hiding it. Notably, `../23_sets` §1 #3 (Valid
+Anagram) is included **because a set is the wrong tool for it**; showing where a structure fails is
+worth a slot.
+
+`26_dp` is 52 because DP is not one technique but ten patterns sharing a vocabulary, and fluency in
+knapsack transfers nothing to interval DP. Below roughly five problems per pattern you can solve
+those five and still not recognise the sixth, which is the only thing that matters. This is the one
+folder where the count is genuinely load-bearing rather than a judgement call.
+
+Two further process notes, from 22–26:
+
+6. **A failing test is still more often my expectation than the code.** One failure in the BST
+   harness (LC 1038) was my own arithmetic — I had used LeetCode's published output for a
+   *different* input tree. The count stands at six wrong expectations against zero wrong
+   ship-quality samples across 09–26.
+7. **Some of the author's code cannot be run as written, and the logic must still be judged.**
+   Three files in 22–26 do not compile (`23_sets/mapsBasics.cpp`, `25_heap/implementationWuthArray.cpp`,
+   `26_dp/dp.cpp`). Each was tested by making the **smallest possible repair** — renaming one
+   member, fixing one paren — and then reporting the algorithm's behaviour separately from the
+   compile error. That distinction matters to the author: `implementationWuthArray.cpp` has a
+   *naming* bug and a correct heap, and saying only "it does not compile" would have buried that.
+
+### Amendment — 27–29
+
+`27_graphs` **46**, `28_DSU` **18**. Graphs is second only to DP and for the same reason: it is one
+data structure with eight algorithms bolted on, and Dijkstra teaches you nothing about topological
+sort. The largest single group is **grids and implicit graphs** (10), because most interview graph
+problems never use the word *graph* — six of the author's own nine listed problems are grids.
+
+DSU is 18: one structure, but the *applications* do not transfer. Its smallest section is two
+problems (dynamic connectivity) and cannot honestly be larger — there are not many famous ones — but
+it is the only thing DSU does that a traversal cannot, so it stays rather than being padded.
+
+`29_Practice Problems` is counted differently and is not comparable: 150 revision problems chosen
+for coverage of already-taught patterns, not for teaching. See
+[[16_revision-folder-has-no-per-problem-solutions]].
+
+Three more process notes:
+
+8. **Count the list, do not describe it.** A draft of `29/questions.md` said "the 50 highest
+   frequency problems" while actually starring 87, and named a "hard cut" whose per-group subtotals
+   summed to 50 but whose listed numbers had never been checked. Both were found by `grep -c` and
+   an `awk` contiguity check, not by rereading. Any claim of the form "N items" in these files is
+   now verified by counting the file.
+9. **Cite line numbers from the file, not from memory.** Four citations in `28_DSU/solution.md`
+   were one or two lines off — `rank[a]++` is line 13 and `par[b]=para` is line 14, and the first
+   draft attributed both to 13. A `sed -n '9,18p' | cat -n` cross-check fixed them. A precise-looking
+   wrong line number is worse than no line number, because the author will look there and conclude
+   the report is careless.
+10. **A bug that passes half its tests is the dangerous kind.** `dfs.cpp`'s `anyPath` returns the
+   correct answer for `anyPath(3,3)` and for a genuinely disconnected pair — two of four cases —
+   while the recursion never executes at all. Choosing test inputs where the right answer is *not*
+   the trivial one is what exposed it. Same lesson as note 3, from the other direction.
 
 ## Rejected alternative
 

@@ -1,3 +1,8 @@
+// Question: Given the stock prices for consecutive days, find the stock span
+// for each day. The span is the number of consecutive days, including the
+// current day, for which the stock price was less than or equal to today's
+// price. Solve the problem using a stack.
+                  
 # include<iostream>
 # include<stack>
 using namespace std;

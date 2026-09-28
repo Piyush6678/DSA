@@ -1,4 +1,4 @@
-# 17 — Linked Lists
+ # 17 — Linked Lists
 
 The first data structure you build rather than borrow. Everything here is pointer rewiring, which
 is why `../06_Pointer` and `../16_oops` come first — a `Node` is a class, and a list is a chain of

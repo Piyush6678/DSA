@@ -10,13 +10,21 @@
 > **construction/serialisation**, which is the hardest group and the one that proves you
 > understand what a traversal actually encodes. Thirty-four is roughly five per group. Below that
 > you drop a group; the iterative traversals alone are three problems people fail on sight.
+>
+> **Plus 16 in Section 5**, added later and held to a different standard: those are problems where
+> the tree is only half the answer and the other half comes from `22`–`27`. They are not part of
+> the 34 because you cannot solve them yet.
 
 **Platform note.** LeetCode numbers are exact. **GeeksforGeeks has no numeric IDs** — search the
 quoted title.
 
-**Scope note.** Everything needs only `01`–`20`. Entries marked **`[impl]`** are structural
+**Scope note.** Sections 1–4 need only `01`–`20`. Entries marked **`[impl]`** are structural
 exercises rather than judge problems. **`[fwd]`** marks a problem whose natural home is a later
 folder.
+
+**Section 5 is different** — it deliberately breaks the scope rule. Those problems need BSTs,
+maps, heaps, DP or graphs, and they are listed here rather than in those folders because the
+*tree* part is the hard part. Come back to them once `22`–`27` are done.
 
 **All twelve problems from your `readme.md` are covered**, and the one you marked **#imp** (236)
 is in Section 2.
@@ -153,6 +161,81 @@ pointers and a tree becomes an undirected graph, then BFS. That reframing is dir
 
 ---
 
+## Section 5 — Advanced / multi-concept
+
+**These are not harder tree problems. They are tree problems that stop being tree problems**
+partway through — the traversal is the easy half and the answer lives in a technique from another
+folder. That is what makes them interview questions rather than exercises.
+
+Every entry below needs at least one topic this folder does not cover. The **Needs** column says
+which, so you can defer a problem until you have the prerequisite rather than bouncing off it.
+
+`solution.md` §5 explains what each one is asking and which ideas it combines — **it does not give
+the answers**, deliberately. The value of this section is entirely in solving them yourself.
+
+### 5a — DP on trees
+
+| # | Problem | Difficulty | Platform | Needs |
+|---|---|---|---|---|
+| 35 | House Robber III | **Medium** | **LeetCode 337** | `../26_dp` — return a *pair* per node |
+| 36 | Binary Tree Cameras | **Hard** | **LeetCode 968** | `../26_dp` — three-state post-order |
+| 37 | Longest Path With Different Adjacent Characters | **Hard** | **LeetCode 2246** | `../26_dp` + `../09_Strings` |
+| 38 | Sum of Distances in Tree | **Hard** | **LeetCode 834** | `../26_dp` + `../27_graphs` — rerooting |
+| 39 | Kth Ancestor of a Tree Node | **Hard** | **LeetCode 1483** | `../26_dp` + `../15_bitwise` — binary lifting |
+
+**Why these five.** #35 is the gateway: the moment a node needs to return *two* numbers (best-if-I
+-take-this-node, best-if-I-skip-it) instead of one, `../21_tree` §5(a) becomes DP. #36 is the same
+shape with three states and a greedy tie-break, and it is one of the hardest tree problems on
+LeetCode. #38 and #39 are the two that change your model of what a tree is — #38 computes the
+answer for one root and then *slides* it to every other root in O(1) each, and #39 stores 2ʲ-th
+ancestors so a query jumps by powers of two.
+
+### 5b — the tree is a BST, or contains one
+
+| # | Problem | Difficulty | Platform | Needs |
+|---|---|---|---|---|
+| 40 | Maximum Sum BST in Binary Tree | **Hard** | **LeetCode 1373** | `../22_bst` — Info struct upward |
+| 41 | Closest BST Values II (k closest) | **Hard** | **LeetCode 272** `[prem]` | `../22_bst` + `../25_heap` |
+| 42 | Merge BSTs to Create Single BST | **Hard** | **LeetCode 1932** | `../22_bst` + `../24_maps` |
+| 43 | Unique Binary Search Trees II | **Medium** | **LeetCode 95** | `../22_bst` + `../26_dp` — Catalan |
+
+**Why these four.** #40 is `../22_bst` §3 #22 with a sum carried alongside, and it is the cleanest
+example of the return-a-struct-upward pattern. #41 has two good answers — a size-k heap, or an
+in-order walk with two pointers — and comparing them is the exercise. **#42 is the nastiest problem
+in this section**: it is a graph-assembly problem disguised as a BST problem, and getting the
+"exactly one root survives" bookkeeping right is most of the work.
+
+### 5c — maps, sets and hashing on trees
+
+| # | Problem | Difficulty | Platform | Needs |
+|---|---|---|---|---|
+| 44 | Find Duplicate Subtrees | **Medium** | **LeetCode 652** | `../24_maps` — serialise, then count |
+| 45 | Most Frequent Subtree Sum | **Medium** | **LeetCode 508** | `../24_maps` + `../25_heap` |
+| 46 | Create Binary Tree From Descriptions | **Medium** | **LeetCode 2196** | `../23_sets` + `../24_maps` |
+| 47 | Smallest Missing Genetic Value in Each Subtree | **Hard** | **LeetCode 2003** | `../23_sets` — small-to-large merging |
+| 48 | Throne Inheritance | **Medium** | **LeetCode 1600** | `../24_maps` — n-ary tree, design |
+
+**Why these five.** #44 makes the point from Q7 operational — you *hash the serialisation* of each
+subtree, so "are these two subtrees identical" becomes a string comparison. #46 is the reverse of
+every problem so far: you are given edges and must find which node is the root, which is a
+set-difference. **#47 is the one worth the most** — the naive solution is O(n²) and the fix is
+"always merge the smaller set into the larger", the same amortised argument that makes union-by-size
+work in `../28_DSU`.
+
+### 5d — the tree is really a graph
+
+| # | Problem | Difficulty | Platform | Needs |
+|---|---|---|---|---|
+| 49 | Minimum Height Trees | **Medium** | **LeetCode 310** | `../27_graphs` — peel leaves inward |
+| 50 | Linked List in Binary Tree | **Medium** | **LeetCode 1367** | `../17_linked_list` |
+
+**Why these two.** #49 is given as an edge list, not a root pointer, and there is no root — which
+is the moment you realise "tree" and "rooted tree" are different things. #50 is the odd one out on
+purpose: two different pointer structures at once, and the bug everyone hits is restarting the list
+match at the wrong place.
+
+---
+
 ## Progress tracker
 
 ```
@@ -163,4 +246,8 @@ Section 2   [ ] 13  [ ] 14  [ ] 15  [ ] 16  [ ] 17
 Section 3   [ ] 23  [ ] 24  [ ] 25  [ ] 26  [ ] 27  [ ] 28
             [ ] 29  [ ] 30  [ ] 31  [ ] 32  [ ] 33  [ ] 34
 Section 4   [ ] ______ / 16
+Section 5   [ ] 35  [ ] 36  [ ] 37  [ ] 38  [ ] 39   (dp on trees)
+            [ ] 40  [ ] 41  [ ] 42  [ ] 43           (bst)
+            [ ] 44  [ ] 45  [ ] 46  [ ] 47  [ ] 48   (maps / sets)
+            [ ] 49  [ ] 50                           (graphs / lists)
 ```

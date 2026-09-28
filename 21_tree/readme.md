@@ -48,7 +48,7 @@ with yourself whether height counts *nodes* or *edges* — a single node has hei
 
 **A tree with `n` nodes has `n-1` edges**, always. And a *balanced* tree has height `O(log n)`
 while a degenerate one has height `O(n)` — which is why every "O(log n)" claim about trees quietly
-assumes balance.
+assumes balance.         
 
 ---
 
